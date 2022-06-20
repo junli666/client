@@ -14,7 +14,7 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<PageOne />} />
+          <Route path="/" element={<PageOne />} />
           <Route path="/pageTwo" element={<PageTwo />} />
         </Routes>
       </BrowserRouter>
