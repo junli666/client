@@ -5,26 +5,22 @@ import StreamEdit from "../components/streams/StreamEdit";
 import StreamDelete from "../components/streams/StreamDelete";
 import StreamList from "../components/streams/StreamList";
 import StreamShow from "../components/streams/StreamShow";
-
-const PageOne = () => {
-  return <div>page one</div>;
-};
-
-const PageTwo = () => {
-  return <div>page two</div>;
-};
+import Header from "./Header";
 
 export default function App() {
   return (
-    <div>
+    <div className="ui container">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<StreamList />} />
-          <Route path="/streams/new" element={<StreamCreate />} />
-          <Route path="/streams/edit" element={<StreamEdit />} />
-          <Route path="/streams/delete" element={<StreamDelete />} />
-          <Route path="/streams/show" element={<StreamShow />} />
-        </Routes>
+        <div>
+          <Header />
+          <Routes>
+            <Route path="/" element={<StreamList />} />
+            <Route path="/streams/new" element={<StreamCreate />} />
+            <Route path="/streams/edit" element={<StreamEdit />} />
+            <Route path="/streams/delete" element={<StreamDelete />} />
+            <Route path="/streams/show" element={<StreamShow />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );
