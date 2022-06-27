@@ -15,14 +15,15 @@ export default function GoogleAuth() {
         .then(() => {
           const auth = window.gapi.auth2.getAuthInstance();
           setIsSignedIn(auth.isSignedIn.get());
-          auth.isSignedIn.listen(onAuthChange(auth.isSignedIn.get()));
+          auth.isSignedIn.listen(onAuthChange);
         });
     });
-  });
+  }, []);
 
-  const onAuthChange = (signedIn) => {
+  const onAuthChange = () => {
     console.log("I am in");
-    setIsSignedIn(signedIn);
+    const auth = window.gapi.auth2.getAuthInstance();
+    setIsSignedIn(auth.isSignedIn.get());
   };
   return (
     <>
