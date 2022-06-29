@@ -25,10 +25,29 @@ export default function GoogleAuth() {
     const auth = window.gapi.auth2.getAuthInstance();
     setIsSignedIn(auth.isSignedIn.get());
   };
-  return (
-    <>
-      {isSignedIn && <div>signed in</div>}
-      {!isSignedIn && <div>no signed in</div>}
-    </>
-  );
+
+  const signIn = () => {
+    const auth = window.gapi.auth2.getAuthInstance();
+    auth.signIn();
+  };
+  const signOut = () => {
+    const auth = window.gapi.auth2.getAuthInstance();
+    auth.signOut();
+  };
+  const renderAuthButton = () => {
+    if (isSignedIn)
+      return (
+        <button className="ui red google button" onClick={signOut}>
+          <i className="google icon"></i>
+          sign out
+        </button>
+      );
+    return (
+      <button className="ui red google button" onClick={signIn}>
+        <i className="google icon"></i>
+        sign in with google
+      </button>
+    );
+  };
+  return <>{renderAuthButton()}</>;
 }
