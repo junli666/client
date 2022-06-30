@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../actions";
 
-export default function GoogleAuth() {
+function GoogleAuth(props) {
   const [isSignedIn, setIsSignedIn] = useState(false);
   // let auth = null;
   useEffect(() => {
@@ -20,10 +22,9 @@ export default function GoogleAuth() {
     });
   }, []);
 
-  const onAuthChange = () => {
-    console.log("I am in");
-    const auth = window.gapi.auth2.getAuthInstance();
-    setIsSignedIn(auth.isSignedIn.get());
+  const onAuthChange = (isSginedIn) => {
+    if (isSignedIn) props.signIn();
+    else props.signOut();
   };
 
   const signIn = () => {
@@ -51,3 +52,5 @@ export default function GoogleAuth() {
   };
   return <>{renderAuthButton()}</>;
 }
+
+export default connect(null, { signIn, signOut })(GoogleAuth);
