@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  isSignedIn: null,
+  isSignedIn: false,
 };
 
 export default function aaa(state = INITIAL_STATE, action) {
