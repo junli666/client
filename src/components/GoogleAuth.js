@@ -30,6 +30,7 @@ function GoogleAuth(props) {
 
   const onAuthChange = () => {
     console.log("change");
+    console.log(props);
     if (props.isSignedIn) {
       props.signIn();
     } else {
@@ -39,6 +40,7 @@ function GoogleAuth(props) {
 
   const signIn = () => {
     const auth = window.gapi.auth2.getAuthInstance();
+    console.log("signIn");
     auth.signIn();
   };
   const signOut = () => {
