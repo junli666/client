@@ -2,8 +2,9 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 
 function StreamCreate(props) {
-  const renderInput = (formProps) => {
-    return <input {...formProps.input} />;
+  //hoist this to fix problem of focus lost after first character entered
+  const renderInput = ({ input }) => {
+    return <input {...input} />;
   };
   return (
     <form>
