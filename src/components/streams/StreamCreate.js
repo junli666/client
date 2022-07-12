@@ -3,12 +3,7 @@ import { reduxForm, Field } from "redux-form";
 
 function StreamCreate(props) {
   const renderInput = (formProps) => {
-    return (
-      <input
-        onChange={formProps.input.onChange}
-        value={formProps.input.value}
-      />
-    );
+    return <input {...formProps.input} />;
   };
   return (
     <form>
