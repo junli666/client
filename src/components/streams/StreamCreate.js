@@ -1,15 +1,27 @@
 import React from "react";
-import { reduxForm, Field } from "redux-form";
-const renderInput = ({ input, label }) => {
+import { reduxForm, Field, formValues } from "redux-form";
+const renderInput = ({ input, label, meta }) => {
+  console.log(meta);
   return (
     <div className="field">
       <label>{label}</label>
       <input {...input} />
+      <div>{meta.error}</div>
     </div>
   );
 };
-const onSubmit = (formValue) => {
-  console.log(formValue);
+const onSubmit = (formValues) => {
+  console.log(formValues);
+};
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.title) {
+    errors.title = "You must enter a title";
+  }
+  if (!formValues.description) {
+    errors.description = "You must enter a description";
+  }
+  return errors;
 };
 function StreamCreate(props) {
   return (
@@ -28,4 +40,5 @@ function StreamCreate(props) {
 
 export default reduxForm({
   form: "streamCreate",
+  validate,
 })(StreamCreate);
