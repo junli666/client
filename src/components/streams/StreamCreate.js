@@ -1,12 +1,22 @@
 import React from "react";
-import { reduxForm, Field, formValues } from "redux-form";
+import { reduxForm, Field } from "redux-form";
+
+const renderError = ({ error, touched }) => {
+  if (touched && error) {
+    return (
+      <div className="ui error message">
+        <div className="header">{error}</div>
+      </div>
+    );
+  }
+};
 const renderInput = ({ input, label, meta }) => {
   console.log(meta);
   return (
     <div className="field">
       <label>{label}</label>
-      <input {...input} />
-      <div>{meta.error}</div>
+      <input {...input} autoComplete="off" />
+      <div>{renderError(meta)}</div>
     </div>
   );
 };
@@ -25,7 +35,7 @@ const validate = (formValues) => {
 };
 function StreamCreate(props) {
   return (
-    <form onSubmit={props.handleSubmit(onSubmit)} className="ui form">
+    <form onSubmit={props.handleSubmit(onSubmit)} className="ui form error">
       <Field name="title" component={renderInput} label="Enter Title" />
       <Field
         name="description"
