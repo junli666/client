@@ -25,7 +25,7 @@ const renderInput = ({ input, label, meta }) => {
 };
 const onSubmit = (formValues) => {
   console.log("before", formValues);
-  createStream(formValues);
+  createStream(formValues)();
   console.log("after", formValues);
 };
 const validate = (formValues) => {
