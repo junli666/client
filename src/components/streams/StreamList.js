@@ -5,7 +5,7 @@ import { fetchStreams } from "../../actions";
 function StreamList(props) {
   useEffect(() => {
     props.fetchStreams();
-  });
+  }, []);
   const renderList = () => {
     return props.streams.map((s) => {
       return (
