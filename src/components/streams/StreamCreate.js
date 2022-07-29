@@ -23,11 +23,7 @@ const renderInput = ({ input, label, meta }) => {
     </div>
   );
 };
-const onSubmit = (formValues) => {
-  console.log("before", formValues);
-  createStream(formValues)();
-  console.log("after", formValues);
-};
+
 const validate = (formValues) => {
   const errors = {};
   if (!formValues.title) {
@@ -39,6 +35,11 @@ const validate = (formValues) => {
   return errors;
 };
 function StreamCreate(props) {
+  const onSubmit = (formValues) => {
+    console.log("before", formValues);
+    props.createStream(formValues);
+    console.log("after", formValues);
+  };
   return (
     <form onSubmit={props.handleSubmit(onSubmit)} className="ui form error">
       <Field name="title" component={renderInput} label="Enter Title" />
