@@ -6,6 +6,18 @@ function StreamList(props) {
   useEffect(() => {
     props.fetchStreams();
   }, []);
+
+  const renderAdmin = (stream) => {
+    console.log(stream.userId);
+    if (stream.userId !== null && stream.userId === props.currentUserId) {
+      return (
+        <div className="right floated content">
+          <button className="ui button primary">Edit</button>
+          <button className="ui button negative">Delete</button>
+        </div>
+      );
+    }
+  };
   const renderList = () => {
     return props.streams.map((s) => {
       return (
@@ -15,6 +27,7 @@ function StreamList(props) {
             {s.title}
             <div className="description">{s.description}</div>
           </div>
+          {renderAdmin(s)}
         </div>
       );
     });
@@ -28,6 +41,9 @@ function StreamList(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { streams: Object.values(state.streams) };
+  return {
+    streams: Object.values(state.streams),
+    currentUserId: state.auth.userId,
+  };
 };
 export default connect(mapStateToProps, { fetchStreams })(StreamList);
