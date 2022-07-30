@@ -22,12 +22,12 @@ function StreamList(props) {
     return props.streams.map((s) => {
       return (
         <div className="item" key={s.id}>
+          {renderAdmin(s)}
           <i className="large middle aligned icon camera"></i>
           <div className="content">
             {s.title}
             <div className="description">{s.description}</div>
           </div>
-          {renderAdmin(s)}
         </div>
       );
     });
