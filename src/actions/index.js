@@ -32,7 +32,7 @@ export const createStream = (formValues) => async (dispatch, getState) => {
   dispatch({ type: CREATE_STREAM, payload: response.data });
 
   console.log("before push");
-  history.push("/sdes");
+  history.push("/");
   console.log(history);
   console.log("after push");
 };
